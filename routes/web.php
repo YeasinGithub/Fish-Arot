@@ -123,8 +123,9 @@ Route::delete('/loan/{id}',[App\Http\Controllers\LoanGiven\LoanGivenController::
 
 
 
-Route::get('/loanE/{id}', [App\Http\Controllers\LoanGiven\LoanGivenController::class,'edit']);
-Route::put('/loanE/update/',[App\Http\Controllers\LoanGiven\LoanGivenController::class,'update'])->name('loanE.update');
+Route::get('/loan/{id}', [App\Http\Controllers\LoanGiven\LoanGivenController::class,'edit']);
+Route::put('/loan/update/',[App\Http\Controllers\LoanGiven\LoanGivenController::class,'update'])->name('loan.update');
+/*Route::post('/loan/update/',[App\Http\Controllers\LoanGiven\LoanGivenController::class,'update']);*/
 Route::get('/loanE/edit-amount/', [App\Http\Controllers\LoanGiven\LoanGivenController::class,'editamount']);
 
 
@@ -134,8 +135,23 @@ Route::post('/adds-loans',[App\Http\Controllers\LoanTaken\LoanTakenController::c
 
 Route::get('/loans/amount/', [App\Http\Controllers\LoanTaken\LoanTakenController::class,'amount']);
 
+
 /*---চালান----*/
 Route::get('/chalan/', [App\Http\Controllers\Chalan\ChalanController::class,'index']);
+Route::get('/chalan/mohajons_address/', [App\Http\Controllers\Chalan\ChalanController::class,'address']);
+Route::post('chalan/add-chalan/', [App\Http\Controllers\Chalan\ChalanController::class,'store'])->name('chalan.add-chalan');
+Route::get('/chalan/edit/', [App\Http\Controllers\Chalan\ChalanController::class,'edit']);
+Route::post('/chalan/update/', [App\Http\Controllers\Chalan\ChalanController::class,'update']);
+Route::delete('/chalan/{id}', [App\Http\Controllers\Chalan\ChalanController::class,'destroy']);
+
 
 /*---চালান বাদ----*/
 Route::get('/chalan-bad/', [App\Http\Controllers\ChalanBad\ChalanBadController::class,'index']);
+Route::post('chalan-bad/save/', [App\Http\Controllers\ChalanBad\ChalanBadController::class,'store'])->name('chalan-bad.save');
+Route::get('/chalan-bad/{id}', [App\Http\Controllers\ChalanBad\ChalanBadController::class,'edit']);
+Route::put('/chalan-bad/update/', [App\Http\Controllers\ChalanBad\ChalanBadController::class,'update'])->name('chalan-bad.update');
+Route::delete('/chalan-bad/{id}', [App\Http\Controllers\ChalanBad\ChalanBadController::class,'destroy']);
+
+
+Route::get('/chalan-bowser', [App\Http\Controllers\ChalanBowserController::class,'index']);
+

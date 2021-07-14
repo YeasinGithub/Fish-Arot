@@ -87,8 +87,11 @@ class LoanGivenController extends Controller
     {
         $loan = LoanGiven::find($request->id);
         $loan->name = $request->name;
-        $loan->title = $request->title;
         $loan->phone = $request->phone;
+        $loan->date = $request->date;
+        $loan->loan_amount = $request->loan_amount;
+        $loan->paid = $request->paid;
+        $loan->due = $request->due;
         $loan->save();
         return response()->json($loan);
     }

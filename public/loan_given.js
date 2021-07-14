@@ -108,7 +108,7 @@ function deleteFunc(id){
 
 /*----edit-update-----*/
   function editFunc(id){
-    $.get('/loanE/'+id,function(loan){
+    $.get('/loan/'+id,function(loan){
       $("#id").val(loan.id);
       $("#name2").val(loan.name);
       $("#phone2").val(loan.phone);
@@ -132,7 +132,7 @@ function deleteFunc(id){
     let _token = $("input[name=_token]").val();
     
     $.ajax({
-      url:"{{route('loanE.update')}}",
+      url:"loan/update",
       type:"PUT",
       data:{
         id:id,
@@ -154,15 +154,15 @@ function deleteFunc(id){
         $("#editModal").modal('toggle');
         $("#studentEditForm")[0].reset();
       }
-    })
-  })
+    });
+  });
 /*----end edit-update-----*/
 
 
 $(function(){
 
   $(document).on("keyup", "#phone2", function(phone, lm, paid, due){
-alert('ok');
+      /*alert('ok');*/
       mobile();
           });
 
@@ -182,7 +182,7 @@ alert('ok');
     var phone=$("#phone2").val();
 
     var lm=$("#loan_amount2").val()? $("#loan_amount2").val():0;
-    alert($("#loan_amount2").val()? $("#loan_amount2").val():0);
+    /*alert($("#loan_amount2").val()? $("#loan_amount2").val():0);*/
           
     var paid=$("#paid2").val()? $("#paid2").val():0;
     var due=$("#due2").val()? $("#due2").val():0;
@@ -196,10 +196,10 @@ alert('ok');
             if(response.length!= 0){
 
                 var a=response[0].due?response[0].due:0;
-                alert(a);
+                /*alert(a);*/
 
                 $("#due2").val((Number(lm)+Number(a))-Number(paid));
-                alert($("#due2").val((Number(lm)+Number(a))-Number(paid)));
+                /*alert($("#due2").val((Number(lm)+Number(a))-Number(paid)));*/
 
                 }else
                 {

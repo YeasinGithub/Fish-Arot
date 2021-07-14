@@ -35,18 +35,18 @@
                   </div>
                   <label for="input-12" class="col-sm-2 col-form-label">লোনের পরিমান</label>
                   <div class="col-sm-4">
-                    <input type="number" id="loan_amount" class="form-control" name="hal" placeholder="টাকার পরিমান">
+                    <input type="text" id="loan_amount" class="form-control" name="hal" placeholder="টাকার পরিমান">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="input-13" class="col-sm-2 col-form-label">জমা</label>
                   <div class="col-sm-4">
-                    <input type="number" id="paid" class="form-control" name="total" placeholder="জমা">
+                    <input type="text" id="paid" class="form-control" name="total" placeholder="জমা">
                   </div>
                   <label for="input-13" class="col-sm-2 col-form-label">অবশিষ্ট</label>
                   <div class="col-sm-4">
-                    <input type="number" id="due" class="form-control" name="paid" readonly>
+                    <input type="text" id="due" class="form-control" name="paid" readonly>
                   </div>
                 </div>
 
@@ -90,7 +90,7 @@
                   <td>{{$loan->paid}}</td>
                   <td>{{$loan->due}}</td>
                   <td>
-                    <a href="javascript:void(0)"onclick="editFunc({{$loan->id}})" class="btn btn-info btn-sm">edit</a>
+                    <a href="javascript:void(0)" onclick="editFunc({{$loan->id}})" class="btn btn-info btn-sm">edit</a>
     <a href="javascript:void(0)" onclick="deleteFunc({{$loan->id}})" class="btn btn-danger btn-sm" >delete</a>
                   </td>
 
@@ -138,7 +138,7 @@
 
        <form id="studentEditForm">
         @csrf
-    <input type="hidden" id="id">
+    <input type="hidden" id="id" name="id">
           <div class="form-group">
             <label class="col-form-label">Name:</label>
             <input type="text" class="form-control" required id="name2">
@@ -169,7 +169,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">update</button>
       </div>
       </form>
 

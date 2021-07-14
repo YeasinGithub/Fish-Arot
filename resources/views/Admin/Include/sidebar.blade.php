@@ -95,6 +95,7 @@
         <ul class="sidebar-submenu">
         <li><a href="{{url('/chalan')}}"><i class="fa fa-circle-o"></i>চালান</a></li>
         <li><a href="{{url('/chalan-bad')}}"><i class="fa fa-circle-o"></i>চালান বাদ</a></li>
+        <li><a href="{{url('/chalan-bowser')}}"><i class="fa fa-circle-o"></i>চালান ভাউচার</a></li>
         
         </ul>
       </li>

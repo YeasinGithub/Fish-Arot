@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Chalan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Chalan;
+use App\Models\Mohajon;
 
 class ChalanController extends Controller
 {
@@ -14,7 +16,9 @@ class ChalanController extends Controller
      */
     public function index()
     {
-        return view('Admin.Chalan.chalan');
+        $chalans = Chalan::orderBy('id', 'DESC')->get();
+        $mohajons=Mohajon::get();
+        return view('Admin.Chalan.chalan', compact('mohajons','chalans'));
     }
 
     /**
@@ -35,7 +39,20 @@ class ChalanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*return $request->all();*/
+        foreach ($request->addmore as $key => $value) {
+            $arr1 = array('mohajon_id' => $request->mohajon_id, 
+                           'mohajon_address' => $request->mohajon_address,
+                           'total_kg' => $request->total_kg,
+                           'last_total' => $request->last_total,
+                           'date' => $request->date
+                         );
+
+            $test=$value + $arr1;
+
+            Chalan::create($test);
+      
+        }
     }
 
     /**
@@ -55,9 +72,11 @@ class ChalanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->id;
+        $editData = Chalan::find($id);
+        return $editData;
     }
 
     /**
@@ -67,9 +86,21 @@ class ChalanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // @dd($request->all());
+        $update = Chalan::where("id", $request->id)->update([
+            "fish_name" => $request->fish_name,
+            "kg_gram" => $request->kg_gram,
+            "rate_per_kg" => $request->rate_per_kg,
+            "total_taka" => $request->total_taka,
+        ]);
+        if($update){
+                /*return response()->json("success");*/
+                return redirect('/chalan');
+        }else{
+                return response()->json("error");
+        }
     }
 
     /**
@@ -80,6 +111,16 @@ class ChalanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $loan = Chalan::find($id);
+        $loan->delete();
+        return response()->json(['success'=>'data hss been deleted']);
+
     }
+
+
+    public function address(Request $request)
+     {      
+        return $mohajon=Mohajon::select("address")->findOrFail($request->id);
+
+      }
 }
